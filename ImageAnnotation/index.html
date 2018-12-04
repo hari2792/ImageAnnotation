@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+   <head></head>
+   <link rel="stylesheet" type="text/css" href="app\css\annotate.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <script type="text/javascript" src="lib/js/jquery-3.2.0.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>  
+   <script type="text/javascript" src="app.js"></script>
+   <script type="text/javascript" src="lib\djaodjin-annotate\djaodjin-annotate.js"></script>
+   <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+   <script type="text/javascript" src="lib\PDF\pdf.js"></script>  
+   <script type="text/javascript" src="lib\PDF\pdf.worker.js"></script>  
+   <body ng-app="myApp" ng-controller="mainCtrl">
+      <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+         <div class="navbar-header">          
+            <span style="color:white">MSTR Annotate Report - Filter Criteria</span>
+         </div>
+      </nav>
+      <div style="padding-left:25px;">
+         <div class="row"  style="float:left;">
+            <input id="file-upload" type = "file" file-model = "myFile"/>	
+         </div>
+         <div class="row">
+            <div class="col-md-12">
+               <label>Country</label>
+               <select ng-model="selectedItemvalue">
+                  <option ng-repeat="image in imageList" value="{{image.value}}">{{image.name}}</option>
+               </select>
+            </div>
+         </div>
+         <div class="row imageButton">
+            <!-- <button class ="btn btn-primary" id="push" ng-click="pushImage()">Push new image</button>	  -->
+            <button id="push" class ="btn btn-primary" ng-click = "uploadFile()">Fetch Data</button>
+            <button class ="btn btn-primary" ng-click="saveAnnotation()">Save</button>
+            <button class ="btn btn-primary" ng-click="saveImage()">Generate PDF</button>
+            <!-- <button class ="btn btn-primary" ng-click="deleteAnnotation()">Delete</button> -->
+         </div>
+      </div>
+      <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+         <!-- Brand and toggle get grouped for better mobile display -->
+         <div class="navbar-header">          
+            <span style="color:white">MSTR Annotate Report</span>
+         </div>
+      </nav>
+      <div class="row jspdf">
+      <div class="col-md-3" style="border:1px Solid Black;">
+		<div id="narrativeForPDF"></div>
+		<div class="col-md-12" style="background-color:lightBlue;border-Color: lightBlue;"><b>Scenario Narrative</b></div>
+		<textarea class="col-md-12 narrativeValue" style="border-Color: lightBlue; height:400px" ng-model="narrative">{{narrative}}</textarea>
+      </div>
+      <div class="col-md-8" style="border:1px solid black; height:450px">
+         <canvas id="pdf-canvas" style="visibility:hidden;" width="400"></canvas>
+         <div id="myCanvas" style="margin-top:40px">
+         </div>
+      </div>
+   </body>
+</html>

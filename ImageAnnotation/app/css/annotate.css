@@ -1,0 +1,37 @@
+#list{
+   margin-left:260px
+}
+#tool{
+  top:0px;
+}
+#push{
+  margin-left:20px;
+}
+.annotate-container{
+	position: relative;
+}
+
+.navbar{
+	min-height: 25px !important;
+}
+
+.imageButton{
+	margin: 5px 5px 5px 35px
+	
+}
+
+.annotate-container > [id^=baseLayer]{
+	position: absolute;
+	top:0
+	left: 0;
+	z-index: 0;
+	background: grey;
+}
+
+.annotate-container > [id^=drawingLayer]{
+	position: absolute;
+	top:0
+	left: 0;
+	z-index: 1;
+	background: transparent;
+}
