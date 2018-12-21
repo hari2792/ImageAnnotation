@@ -30,6 +30,7 @@ MIT License
         this.currentWidth = null;
         this.currentHeight = null;
         this.init();
+		this.isTextSelected = false;
     }
 
     Annotate.prototype = {
@@ -507,13 +508,14 @@ MIT License
             var self = this;
             self.clicked = true;
             var offset = self.$el.offset();
-            if (self.$textbox.is(":visible")) {
+            if (self.$textbox.is(":visible") || self.isTextSelected) {
                 var text = self.$textbox.val();
+				self.isTextSelected = false;
                 self.$textbox.val("").hide();
                 if (text !== "") {
                     if (!self.tox) {
                         self.tox = 100;
-                    }
+                    } 
                     self.storedElement.push({
                         type: "text",
                         text: text,
@@ -674,7 +676,10 @@ MIT License
                         self.deleteElement = self.nearestElement;
                         self.nearestElementType = self.nearestElement.type;
                         self.clear();
+						self.$textbox.val("").hide();
                         self.redraw();
+						self.checkUndoRedo();
+						self.isTextSelected = true;
                     } else {
 
                         self.$textbox.css({
