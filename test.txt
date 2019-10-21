@@ -1,0 +1,52 @@
+<div>
+	<app-grid></app-grid>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<table>
+			<tr>
+				<th>Employee ID</th>
+				<th>Employee Name</th>			
+				<th>Role</th>
+				<th>Project</th>
+			</tr>
+			<tr *ngFor = "let employee in employeeDetails" [Class.Selected]="selectedEmployee" (click)="passEmployeeDetails(employee)">
+				<td>{{employee.id}}</td>
+				<td>{{employee.name}}</td>
+				<td>{{employee.role}}</td>
+				<td>{{employee.project}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<app-detail class="col-md-6" [employee]="selectedEmployee"></app-detail>
+
+
+
+<div>
+	<div class="row">
+		<label class="col-md-6"> Employee ID
+		</label>
+		<input type="text" readonly class="col-md-6" [(ngModel)]="employee.id"/>
+	</div>
+	<div class="row">
+		<label class="col-md-6"> Employee Name
+		</label>
+		<input type="text" class="col-md-6" [(ngModel)]="employee.name"/>
+	</div>
+	<div class="row">
+		<label class="col-md-6"> Employee Name
+		</label>
+		<input type="text" class="col-md-6" [(ngModel)]="employee.role"/>
+	</div>
+	<div class="row">
+		<label class="col-md-6"> Employee Name
+		</label>
+		<input type="text" class="col-md-6" [(ngModel)]="employee.project"/>
+	</div>
+</div>
+<div class="row">
+	<button class="col-md-2" (click)="submitForm()">Submit</button>
+	<button class="col-md-2" (click)="cancelForm()">Cancel</button>
+</div>
